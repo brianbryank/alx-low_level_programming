@@ -1,19 +1,16 @@
 #include "holberton.h"
-
 /**
- * main - function to print
+ * print_alphabet - function to print abc
  *
  * Return: 0
  */
-int main(void)
+void print_alphabet(void)
 {
-	char holberton[9] = {'H', 'o', 'l', 'b', 'e', 'r', 't', 'o', 'n'};
-	unsigned int c;
+	char c;
 
-	for (c = 0; c < sizeof(holberton); c++)
+	for (c = 'a'; c <= 'z'; c++)
 	{
-		_putchar(holberton[c]);
+		_putchar(c);
 	}
 _putchar('\n');
-return (0);
 }
