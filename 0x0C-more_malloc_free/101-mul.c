@@ -26,7 +26,7 @@ int sign = 1;
 unsigned long int resp = 0, firstNum, i;
 for (firstNum = 0; !(s[firstNum] >= 48 && s[firstNum] <= 57); firstNum++)
 {
-if (s[firstNum] == '-')
+  if (s[firstNum] == '-')
 {
 sign *= -1;
 }
