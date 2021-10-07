@@ -1,20 +1,9 @@
 #include <stdio.h>
-void stat(void) __attribute__ ((constructor));
+
 /**
- * stat - prints a sentence before the main
- * function is executed
- */
-void stat(void)
-{
-printf("You're beat! and yet, you must allow,\n");
-printf("I bore my house upon my back!\n");
-}#include <stdio.h>
-void stat(void) __attribute__ ((constructor));
-/**
- * stat - prints a sentence before the main
- * function is executed
- */
-void stat(void)
+* before_main - prints before main function is executed
+*/
+void  _attribute_((constructor))  before_main()
 {
 printf("You're beat! and yet, you must allow,\n");
 printf("I bore my house upon my back!\n");
