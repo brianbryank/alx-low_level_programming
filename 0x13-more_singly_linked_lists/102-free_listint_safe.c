@@ -1,49 +1,65 @@
 #include "lists.h"
+#include <stdlib.h>
+#include <stdio.h>
+
 /**
- * isCycleList - checks if a list is a cycle
- * @head: listint_t list
- * Return: a pointer
+ * _ra - reallocates memory for an array of pointers
+ * to the nodes in a linked list
+ * @list: the old list to append
+ * @size: size of the new list (always one more than the old list)
+ * @new: new node to add to the list
+ *
+ * Return: pointer to the new list
  */
-const listint_t *isCycleList(const listint_t *head)
+listint_t **_ra(listint_t **list, size_t size, listint_t *new)
 {
-const listint_t *fast = head;
-const listint_t *slow = head;
-while (fast && fast->next)
-{
-fast = fast->next->next;
-slow = slow->next;
-if (fast == slow)
-{
-slow = head;
-while (slow != fast)
-{
-fast = fast->next;
-slow = slow->next;
+	listint_t **newlist;
+	size_t i;
+
+	newlist = malloc(size * sizeof(listint_t *));
+	if (newlist == NULL)
+	{
+		free(list);
+		exit(98);
+	}
+	for (i = 0; i < size - 1; i++)
+		newlist[i] = list[i];
+	newlist[i] = new;
+	free(list);
+	return (newlist);
 }
-return (slow);
-}
-}
-return (NULL);
-}
+
 /**
- * print_listint_safe - function
- * @head: listint_t list
+ * free_listint_safe - frees a listint_t linked list.
+ * @head: double pointer to the start of the list
+ *
  * Return: the number of nodes in the list
  */
-size_t print_listint_safe(const listint_t *head)
+size_t free_listint_safe(listint_t **head)
 {
-const listint_t *breakPoint = isCycleList(head);
-int ommit = 0;
-int count = 0;
-while (head && ommit != 2)
-{
-printf("[%p] %d\n", (void *) head, head->n);
-head = head->next;
-if (head == breakPoint)
-ommit++;
-count++;
-}
-if (ommit == 2)
-printf("-> [%p] %d\n", (void *) breakPoint, breakPoint->n);
-return (count);
+	size_t i, num = 0;
+	listint_t **list = NULL;
+	listint_t *next;
+
+	if (head == NULL || *head == NULL)
+		return (num);
+	while (*head != NULL)
+	{
+		for (i = 0; i < num; i++)
+		{
+			if (*head == list[i])
+			{
+				*head = NULL;
+				free(list);
+				return (num);
+			}
+		}
+		num++;
+		list = _ra(list, num, *head);
+		next = (*head)->next;
+		free(*head);
+		*head = next;
+	}
+	free(list);
+	return (num);
 }
