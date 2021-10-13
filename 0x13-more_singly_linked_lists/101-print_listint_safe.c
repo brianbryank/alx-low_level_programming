@@ -1,49 +1,35 @@
 #include "lists.h"
+#include <stdio.h>
 /**
- * isCycleList - checks if a list is a cycle
- * @head: listint_t list
- * Return: a pointer
- */
-const listint_t *isCycleList(const listint_t *head)
-{
-const listint_t *fast = head;
-const listint_t *slow = head;
-while (fast && fast->next)
-{
-fast = fast->next->next;
-slow = slow->next;
-if (fast == slow)
-{
-slow = head;
-while (slow != fast)
-{
-fast = fast->next;
-slow = slow->next;
-}
-return (slow);
-}
-}
-return (NULL);
-}
-/**
- * print_listint_safe - function
- * @head: listint_t list
- * Return: the number of nodes in the list
+ * print_listint_safe - Print a `listint_t` linked list including mem addresses
+ * @head: head of linked list
+ * Description: Go through the list only once.
+ * Return: number of nodes in list. If fails, exit with status 98.
  */
 size_t print_listint_safe(const listint_t *head)
 {
-const listint_t *breakPoint = isCycleList(head);
-int ommit = 0;
-int count = 0;
-while (head && ommit != 2)
-{
-printf("[%p] %d\n", (void *) head, head->n);
-head = head->next;
-if (head == breakPoint)
-ommit++;
-count++;
-}
-if (ommit == 2)
-printf("-> [%p] %d\n", (void *) breakPoint, breakPoint->n);
-return (count);
+	const listint_t *current;
+	size_t count;
+	const listint_t *hold;
+
+	current = head;
+	if (current == NULL)
+		exit(98);
+
+	count = 0;
+	while (current != NULL)
+	{
+		hold = current;
+		current = current->next;
+		count++;
+		printf("[%p] %d\n", (void *)hold, hold->n);
+
+		if (hold < current)
+		{
+			printf("-> [%p] %d\n", (void *)current, current->n);
+			break;
+		}
+	}
+
+	return (count);
 }
