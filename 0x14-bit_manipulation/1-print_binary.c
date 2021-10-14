@@ -1,24 +1,29 @@
 #include "main.h"
+#include <stdio.h>
+
 /**
- * print_binary - converts int to binary number
- * @n: containing the decimal number
- * Return: the converted number
+ * print_binary - print binary representation of a number
+ * @n: decimal number to print as binary
  */
 void print_binary(unsigned long int n)
 {
-int i, count = 0;
-unsigned long int pnt;
-for (i = 63; i >= 0; i--)
-{
-pnt = n >> i;
-if (pnt & 1)
-{
-_putchar('1');
-count++;
-}
-else if (pnt)
-_putchar('0');
-}
-if (!pnt)
-_putchar('0');
+	unsigned long int temp;
+	int shifts;
+
+	if (n == 0)
+	{
+		printf("0");
+		return;
+	}
+
+	for (temp = n, shifts = 0; (temp >>= 1) > 0; shifts++)
+		;
+
+	for (; shifts >= 0; shifts--)
+	{
+		if ((n >> shifts) & 1)
+			printf("1");
+		else
+			printf("0");
+	}
 }
