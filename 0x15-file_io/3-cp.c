@@ -6,7 +6,7 @@
  * @argc: int
  *
  * @argv: double pointer
- *
+ *brian kiplangat @Alx-school
  * Return: Copy of file
  */
 int main(int argc, char **argv)
