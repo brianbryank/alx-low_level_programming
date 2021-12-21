@@ -31,7 +31,7 @@ return (1);
 }
 temp = temp->next;
 }
-nnode = malloc(sizeof(hash_node_t));
+node = malloc(sizeof(hash_node_t));
 if (node == NULL)
 {
 return (0);
