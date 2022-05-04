@@ -1,8 +1,8 @@
-#0x1E. C - Search Algorithms
+# 0x1E. C - Search Algorithms
 
 In computer science, a search algorithm is an algorithm (typically involving a multitude of other, more specific algorithms [1]) which solves a search problem. Search algorithms work to retrieve information stored within some data structure, or calculated in the search space of a problem domain, either with discrete or continuous values. Search algorithms can be classified based on their mechanism of searching into 3 types of algorithms: linear, binary, and hashing. Linear search algorithms check every record for the one associated with a target key in a linear fashion.[4] Binary, or half interval searches, repeatedly target the center of the search structure and divide the search space in half. Comparison search algorithms improve on linear searching by successively eliminating records based on comparisons of the keys until the target record is found, and can be applied on data structures with a defined order.[5] Digital search algorithms work based on the properties of digits in data structures that use numerical keys.[6] Finally, hashing directly maps keys to records based on a hash function.[7]
 
-#Requirements
+#  Requirements
 
 Allowed editors: vi, vim, emacs
 All your files will be compiled on Ubuntu 14.04 LTS
@@ -18,5 +18,5 @@ The prototypes of all your functions should be included in your header file call
 Don’t forget to push your header file
 All your header files should be include guarded
 
-#Author
+# Author
 brian kplangat
