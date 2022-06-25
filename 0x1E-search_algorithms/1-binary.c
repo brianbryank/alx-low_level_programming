@@ -1,41 +1,36 @@
 #include "search_algos.h"
 
 /**
- * binary_search - using Binary search algor
- * @array: pointer to the first element
- * @size: number of elements in array
+ * binary_search - performs binary search
+ * @array: the integer array
+ * @size: its size
  * @value: value to search for
- * Return: first index or -1
+ *
+ * Return: the index found or -1
  */
 int binary_search(int *array, size_t size, int value)
 {
 	size_t i = 0;
-	size_t left = 0, right = size - 1, midlle;
+	int *a = array;
 
-	if (array == NULL)
+	if (!array)
 		return (-1);
-	while (left <= right)
+
+	while (size)
 	{
-		printf("Searching in array: ");
-		for (i = left; i < right; i++)
-		{
-			printf("%i, ", array[i]);
-		}
-		printf("%i\n", array[right]);
-		midlle = (left + right) / 2;
-		if (array[midlle] < value)
-		{
-			left = midlle + 1;
-		}
-		else if (array[midlle] > value)
-		{
-			right = midlle - 1;
-		}
+		for (i = 0, printf("Searching in array: "); i < size; i++)
+			printf("%d%s", a[i], i + 1 == size ? "\n" : ", ");
+
+		i = (size - 1) / 2;
+		if (a[i] == value)
+			return ((a - array) + i);
+		else if (a[i] > value)
+			size = i;
 		else
 		{
-			return (midlle);
+			a += (i + 1);
+			size -= (i + 1);
 		}
-
 	}
 	return (-1);
 }
